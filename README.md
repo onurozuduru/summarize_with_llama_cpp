@@ -1,5 +1,4 @@
 # summarize_with_llama_cpp
-===
 
 This project demonstrates how to use the [`llama.cpp`](https://github.com/ggml-org/llama.cpp) as a static library and use API in C++20.
 I took text summarization as an example to demonstrate the usage of the library with tiny models.
@@ -222,3 +221,7 @@ Example usage:
 man poll | ./build/bin/example_llama_app
 ```
 
+## Credits
+
+* [ggml-org/llama.cpp](https://github.com/ggml-org/llama.cpp): Used as main library dependency to deal with LLMs.
+* [HuggingFace SmolLM2](https://huggingface.co/HuggingFaceTB/SmolLM2-1.7B) and [SmolLM2 Paper](https://arxiv.org/abs/2502.02737): Used as a base testing model.
