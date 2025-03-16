@@ -1,0 +1,61 @@
+# Build directories
+build/
+out/
+cmake-build-*/
+
+# Prerequisites
+*.d
+
+# Compiled Object files
+*.o
+*.obj
+*.lo
+*.slo
+
+# Precompiled Headers
+*.gch
+*.pch
+
+# Libraries
+*.lib
+*.a
+*.la
+*.lo
+
+# Shared objects (Windows/Mac)
+*.dll
+*.dylib
+
+# Executables
+*.exe
+*.out
+*.app
+
+# Debug files
+*.dSYM/
+*.su
+*.idb
+*.pdb
+
+# CMake generated files
+CMakeFiles/
+CMakeCache.txt
+cmake_install.cmake
+CTestTestfile.cmake
+Makefile
+install_manifest.txt
+
+# Cache
+.cache/
+
+# IDE specific files
+*.swp
+*.swo
+*.user
+*.ncb
+*.sdf
+*.opensdf
+*.vcxproj*
+*.vcproj*
+*.idea/
+*.vscode/
