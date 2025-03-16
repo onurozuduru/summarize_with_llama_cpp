@@ -8,17 +8,22 @@ For testing purposes, it downloads a tiny model [SmolLM2-1.7B](https://huggingfa
 
 ## Demo
 
-Running with GPU and SmolLM2-1.7B
+Running with GPU and SmolLM2-1.7B:
+
 ---
 
 ![run_with_gpu](https://github.com/user-attachments/assets/c55e7d2b-cde8-4133-be48-820ebfebcaca)
 
+---
 Running with CPU by providing SmolLM2 135M version, low performance with less accuracy:
+
 ---
 
 ![run_with_cpu](https://github.com/user-attachments/assets/a0c3c073-4e8b-417f-b4da-614ae834cf99)
 
+---
 Building:
+
 ---
 
 ![build](https://github.com/user-attachments/assets/eec20e82-d1f7-4963-9dc5-f62321bee589)
