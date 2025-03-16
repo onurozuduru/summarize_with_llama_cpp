@@ -1,0 +1,306 @@
+\hypertarget{argument__parser_8h_source}{}\doxysubsection{argument\+\_\+parser.\+h}
+\label{argument__parser_8h_source}\index{include/argument\_parser.h@{include/argument\_parser.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{1 \textcolor{comment}{///////////////////////////////////////////////////////////////////////////////}}
+\DoxyCodeLine{2 \textcolor{comment}{// File: argument\_parser.h}}
+\DoxyCodeLine{3 \textcolor{comment}{//}}
+\DoxyCodeLine{4 \textcolor{comment}{// License: MIT}}
+\DoxyCodeLine{5 \textcolor{comment}{//}}
+\DoxyCodeLine{6 \textcolor{comment}{// Copyright (C) 2025 Onur Ozuduru}}
+\DoxyCodeLine{7 \textcolor{comment}{//}}
+\DoxyCodeLine{8 \textcolor{comment}{// Follow Me!}}
+\DoxyCodeLine{9 \textcolor{comment}{//   github: github.com/onurozuduru}}
+\DoxyCodeLine{10 \textcolor{comment}{///////////////////////////////////////////////////////////////////////////////}}
+\DoxyCodeLine{11 }
+\DoxyCodeLine{12 \textcolor{preprocessor}{\#}\textcolor{preprocessor}{include} \textcolor{preprocessor}{<}\textcolor{preprocessor}{any}\textcolor{preprocessor}{>}}
+\DoxyCodeLine{13 \textcolor{preprocessor}{\#}\textcolor{preprocessor}{include} \textcolor{preprocessor}{<}\textcolor{preprocessor}{functional}\textcolor{preprocessor}{>}}
+\DoxyCodeLine{14 \textcolor{preprocessor}{\#}\textcolor{preprocessor}{include} \textcolor{preprocessor}{<}\textcolor{preprocessor}{stdexcept}\textcolor{preprocessor}{>}}
+\DoxyCodeLine{15 \textcolor{preprocessor}{\#}\textcolor{preprocessor}{include} \textcolor{preprocessor}{<}\textcolor{preprocessor}{string}\textcolor{preprocessor}{>}}
+\DoxyCodeLine{16 \textcolor{preprocessor}{\#}\textcolor{preprocessor}{include} \textcolor{preprocessor}{<}\textcolor{preprocessor}{type\_traits}\textcolor{preprocessor}{>}}
+\DoxyCodeLine{17 \textcolor{preprocessor}{\#}\textcolor{preprocessor}{include} \textcolor{preprocessor}{<}\textcolor{preprocessor}{unordered\_map}\textcolor{preprocessor}{>}}
+\DoxyCodeLine{18 \textcolor{preprocessor}{\#}\textcolor{preprocessor}{include} \textcolor{preprocessor}{<}\textcolor{preprocessor}{vector}\textcolor{preprocessor}{>}}
+\DoxyCodeLine{19 }
+\DoxyCodeLine{20 \textcolor{comment}{/**}}
+\DoxyCodeLine{21 \textcolor{comment}{ * \(\backslash\)brief A simple command line argument parser}}
+\DoxyCodeLine{22 \textcolor{comment}{ */}}
+\DoxyCodeLine{23 \textcolor{keyword}{class} \mbox{\hyperlink{classArgumentParser}{ArgumentParser}} \{}
+\DoxyCodeLine{24 \textcolor{keyword}{private}:}
+\DoxyCodeLine{25   \textcolor{comment}{/**}}
+\DoxyCodeLine{26 \textcolor{comment}{   * \(\backslash\)brief Represents a command line option with its properties and value}}
+\DoxyCodeLine{27 \textcolor{comment}{   */}}
+\DoxyCodeLine{28   \textcolor{keyword}{struct} \mbox{\hyperlink{structArgumentParser_1_1Option}{Option}} \{}
+\DoxyCodeLine{29     \textcolor{comment}{/**}}
+\DoxyCodeLine{30 \textcolor{comment}{     * \(\backslash\)brief Long name of the option without leading dashes}}
+\DoxyCodeLine{31 \textcolor{comment}{     */}}
+\DoxyCodeLine{32     std::string \mbox{\hyperlink{structArgumentParser_1_1Option_ae576157a568f725a650ff58ef9b9ed92}{name}};}
+\DoxyCodeLine{33 }
+\DoxyCodeLine{34     \textcolor{comment}{/** \(\backslash\)brief Short name of the option (single character) without leading dash}}
+\DoxyCodeLine{35 \textcolor{comment}{     */}}
+\DoxyCodeLine{36     std::string \mbox{\hyperlink{structArgumentParser_1_1Option_a0a23bbbb82e4461db9e1a1b23d8b1b48}{short\_name}};}
+\DoxyCodeLine{37 }
+\DoxyCodeLine{38     \textcolor{comment}{/**}}
+\DoxyCodeLine{39 \textcolor{comment}{     * \(\backslash\)brief Description text shown in help message}}
+\DoxyCodeLine{40 \textcolor{comment}{     */}}
+\DoxyCodeLine{41     std::string \mbox{\hyperlink{structArgumentParser_1_1Option_aeb342f2aca8c156b310045d0b767dcab}{description}};}
+\DoxyCodeLine{42 }
+\DoxyCodeLine{43     \textcolor{comment}{/**}}
+\DoxyCodeLine{44 \textcolor{comment}{     * \(\backslash\)brief True if option is a flag (doesn't take a value)}}
+\DoxyCodeLine{45 \textcolor{comment}{     */}}
+\DoxyCodeLine{46     \textcolor{keywordtype}{bool} \mbox{\hyperlink{structArgumentParser_1_1Option_acacda9ce37f0312c6d2e48bd59f4314d}{is\_flag}};}
+\DoxyCodeLine{47 }
+\DoxyCodeLine{48     \textcolor{comment}{/**}}
+\DoxyCodeLine{49 \textcolor{comment}{     * \(\backslash\)brief True if option is required/mandatory}}
+\DoxyCodeLine{50 \textcolor{comment}{     */}}
+\DoxyCodeLine{51     \textcolor{keywordtype}{bool} \mbox{\hyperlink{structArgumentParser_1_1Option_aaf62a3b8358112b85bc6fdd32225aa23}{is\_mandatory}};}
+\DoxyCodeLine{52 }
+\DoxyCodeLine{53     \textcolor{comment}{/**}}
+\DoxyCodeLine{54 \textcolor{comment}{     * \(\backslash\)brief The option's value (type-\/erased)}}
+\DoxyCodeLine{55 \textcolor{comment}{     */}}
+\DoxyCodeLine{56     std::any \mbox{\hyperlink{structArgumentParser_1_1Option_ab6523c03406e2f5c42619cda71197445}{value}};}
+\DoxyCodeLine{57 }
+\DoxyCodeLine{58     \textcolor{comment}{/**}}
+\DoxyCodeLine{59 \textcolor{comment}{     * \(\backslash\)brief Converter function to parse string argument into typed value}}
+\DoxyCodeLine{60 \textcolor{comment}{     */}}
+\DoxyCodeLine{61     std::function<std::any(\textcolor{keyword}{const} std::string \&)> \mbox{\hyperlink{structArgumentParser_1_1Option_abc2f64192bd08e6facc8a461365b9abd}{converter}};}
+\DoxyCodeLine{62 }
+\DoxyCodeLine{63     \textcolor{comment}{/**}}
+\DoxyCodeLine{64 \textcolor{comment}{     * \(\backslash\)brief True if option was provided on command line}}
+\DoxyCodeLine{65 \textcolor{comment}{     */}}
+\DoxyCodeLine{66     \textcolor{keywordtype}{bool} \mbox{\hyperlink{structArgumentParser_1_1Option_a22445604030eb7286b00fb8996fa792b}{is\_provided}}\{\textcolor{keyword}{false}\};}
+\DoxyCodeLine{67   \};}
+\DoxyCodeLine{68 }
+\DoxyCodeLine{69   \textcolor{comment}{/**}}
+\DoxyCodeLine{70 \textcolor{comment}{   * \(\backslash\)brief Maps long option names to their corresponding Option objects}}
+\DoxyCodeLine{71 \textcolor{comment}{   */}}
+\DoxyCodeLine{72   std::unordered\_map<std::string, \mbox{\hyperlink{structArgumentParser_1_1Option}{Option}}> \mbox{\hyperlink{classArgumentParser_a250b4454ecd583c007746f73492c5a78}{options}};}
+\DoxyCodeLine{73 }
+\DoxyCodeLine{74   \textcolor{comment}{/**}}
+\DoxyCodeLine{75 \textcolor{comment}{   * \(\backslash\)brief Maps short option names to their corresponding long option names}}
+\DoxyCodeLine{76 \textcolor{comment}{   * for quick lookup}}
+\DoxyCodeLine{77 \textcolor{comment}{   */}}
+\DoxyCodeLine{78   std::unordered\_map<std::string, std::string> \mbox{\hyperlink{classArgumentParser_a6d8041ab519a00d81e0a533cfaabe06d}{short\_to\_long}};}
+\DoxyCodeLine{79 }
+\DoxyCodeLine{80   \textcolor{comment}{/**}}
+\DoxyCodeLine{81 \textcolor{comment}{   * \(\backslash\)brief Stores positional command line arguments (not associated with any}}
+\DoxyCodeLine{82 \textcolor{comment}{   * option)}}
+\DoxyCodeLine{83 \textcolor{comment}{   */}}
+\DoxyCodeLine{84   std::vector<std::string> \mbox{\hyperlink{classArgumentParser_a010aaa71a340b77f32da77400f56239e}{positional}};}
+\DoxyCodeLine{85 }
+\DoxyCodeLine{86   \textcolor{comment}{/**}}
+\DoxyCodeLine{87 \textcolor{comment}{   * \(\backslash\)brief Name of the program (extracted from argv[0])}}
+\DoxyCodeLine{88 \textcolor{comment}{   */}}
+\DoxyCodeLine{89   std::string \mbox{\hyperlink{classArgumentParser_a5b869a95fdc6892bb95a7b6076a89d3e}{program\_name}};}
+\DoxyCodeLine{90 }
+\DoxyCodeLine{91   \textcolor{comment}{/**}}
+\DoxyCodeLine{92 \textcolor{comment}{   * \(\backslash\)brief Description of the program to show in help message}}
+\DoxyCodeLine{93 \textcolor{comment}{   */}}
+\DoxyCodeLine{94   std::string \mbox{\hyperlink{classArgumentParser_a83175c1d293bf4935e3a401e679971e9}{program\_description}};}
+\DoxyCodeLine{95 }
+\DoxyCodeLine{96   \textcolor{comment}{/**}}
+\DoxyCodeLine{97 \textcolor{comment}{   * \(\backslash\)brief Converts a string argument to a typed value}}
+\DoxyCodeLine{98 \textcolor{comment}{   *}}
+\DoxyCodeLine{99 \textcolor{comment}{   * \(\backslash\)tparam T The target type to convert to (string, bool, int, float, double)}}
+\DoxyCodeLine{100 \textcolor{comment}{   * \(\backslash\)param val The string value to convert}}
+\DoxyCodeLine{101 \textcolor{comment}{   * \(\backslash\)return std::any The converted value wrapped in std::any}}
+\DoxyCodeLine{102 \textcolor{comment}{   * \(\backslash\)throws std::runtime\_error If T is not one of the supported types}}
+\DoxyCodeLine{103 \textcolor{comment}{   * \(\backslash\)throws std::invalid\_argument If the string cannot be converted to the}}
+\DoxyCodeLine{104 \textcolor{comment}{   * requested type}}
+\DoxyCodeLine{105 \textcolor{comment}{   * \(\backslash\)throws std::out\_of\_range If the converted value would be out of range for}}
+\DoxyCodeLine{106 \textcolor{comment}{   * the target type}}
+\DoxyCodeLine{107 \textcolor{comment}{   */}}
+\DoxyCodeLine{108   \textcolor{keyword}{template} <\textcolor{keyword}{typename} T> \textcolor{keyword}{static} std::any \mbox{\hyperlink{classArgumentParser_aba27e4c815ae4a9daf7d23cf9c30eee3}{convert}}(\textcolor{keyword}{const} std::string \&val) \{}
+\DoxyCodeLine{109     \textcolor{keywordflow}{if} \textcolor{keyword}{constexpr} (std::is\_same\_v<T, std::string>) \{}
+\DoxyCodeLine{110       \textcolor{keywordflow}{return} val;}
+\DoxyCodeLine{111     \} \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} \textcolor{keyword}{constexpr} (std::is\_same\_v<T, \textcolor{keywordtype}{bool}>) \{}
+\DoxyCodeLine{112       \textcolor{keywordflow}{return} (val == \textcolor{stringliteral}{"{}true"{}} || val == \textcolor{stringliteral}{"{}1"{}} || val == \textcolor{stringliteral}{"{}yes"{}});}
+\DoxyCodeLine{113     \} \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} \textcolor{keyword}{constexpr} (std::is\_same\_v<T, \textcolor{keywordtype}{int}>) \{}
+\DoxyCodeLine{114       \textcolor{keywordflow}{return} std::stoi(val);}
+\DoxyCodeLine{115     \} \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} \textcolor{keyword}{constexpr} (std::is\_same\_v<T, \textcolor{keywordtype}{float}>) \{}
+\DoxyCodeLine{116       \textcolor{keywordflow}{return} std::stof(val);}
+\DoxyCodeLine{117     \} \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} \textcolor{keyword}{constexpr} (std::is\_same\_v<T, \textcolor{keywordtype}{double}>) \{}
+\DoxyCodeLine{118       \textcolor{keywordflow}{return} std::stod(val);}
+\DoxyCodeLine{119     \} \textcolor{keywordflow}{else} \{}
+\DoxyCodeLine{120       \textcolor{keywordflow}{throw} std::runtime\_error(\textcolor{stringliteral}{"{}Unsupported type conversion"{}});}
+\DoxyCodeLine{121     \}}
+\DoxyCodeLine{122   \}}
+\DoxyCodeLine{123 }
+\DoxyCodeLine{124   \textcolor{comment}{/**}}
+\DoxyCodeLine{125 \textcolor{comment}{   * \(\backslash\)brief Process a single option from the command line}}
+\DoxyCodeLine{126 \textcolor{comment}{   *}}
+\DoxyCodeLine{127 \textcolor{comment}{   * \(\backslash\)param name The long name of the option being processed}}
+\DoxyCodeLine{128 \textcolor{comment}{   * \(\backslash\)param current\_index Current index in argv array, may be updated if option}}
+\DoxyCodeLine{129 \textcolor{comment}{   * consumes a value}}
+\DoxyCodeLine{130 \textcolor{comment}{   * \(\backslash\)param argc Number of command line arguments}}
+\DoxyCodeLine{131 \textcolor{comment}{   * \(\backslash\)param argv Array of command line arguments}}
+\DoxyCodeLine{132 \textcolor{comment}{   *}}
+\DoxyCodeLine{133 \textcolor{comment}{   * \(\backslash\)throws std::runtime\_error If the option is unknown or value parsing fails}}
+\DoxyCodeLine{134 \textcolor{comment}{   * \(\backslash\)throws std::runtime\_error If a non-\/flag option is provided without a value}}
+\DoxyCodeLine{135 \textcolor{comment}{   *}}
+\DoxyCodeLine{136 \textcolor{comment}{   * \(\backslash\)details Handles both flag options (which don't require a value) and value}}
+\DoxyCodeLine{137 \textcolor{comment}{   * options (which consume the next argument as their value). For value}}
+\DoxyCodeLine{138 \textcolor{comment}{   * options, the index cuurent\_index is incremented to skip the value in the}}
+\DoxyCodeLine{139 \textcolor{comment}{   * main parsing loop.}}
+\DoxyCodeLine{140 \textcolor{comment}{   */}}
+\DoxyCodeLine{141   \textcolor{keywordtype}{void} \mbox{\hyperlink{classArgumentParser_a9042b2fb305a6f5a60629190242e7047}{process\_option}}(\textcolor{keyword}{const} std::string \&name, \textcolor{keywordtype}{int} \&current\_index, \textcolor{keywordtype}{int} argc,}
+\DoxyCodeLine{142                       \textcolor{keywordtype}{char} **argv);}
+\DoxyCodeLine{143 }
+\DoxyCodeLine{144   \textcolor{comment}{/**}}
+\DoxyCodeLine{145 \textcolor{comment}{   * \(\backslash\)brief Generates help text for command line usage}}
+\DoxyCodeLine{146 \textcolor{comment}{   * \(\backslash\)return Formatted help string}}
+\DoxyCodeLine{147 \textcolor{comment}{   *}}
+\DoxyCodeLine{148 \textcolor{comment}{   * \(\backslash\)details Creates a help message showing program usage, description,}}
+\DoxyCodeLine{149 \textcolor{comment}{   *          and available options in a readable format}}
+\DoxyCodeLine{150 \textcolor{comment}{   */}}
+\DoxyCodeLine{151   std::string \mbox{\hyperlink{classArgumentParser_af5aecf7c77abfcf6f4d82040ef656cce}{generate\_help}}() \textcolor{keyword}{const};}
+\DoxyCodeLine{152 }
+\DoxyCodeLine{153   \textcolor{comment}{/**}}
+\DoxyCodeLine{154 \textcolor{comment}{   * \(\backslash\)brief Validate option names and check for duplicates}}
+\DoxyCodeLine{155 \textcolor{comment}{   * \(\backslash\)param name The option name to validate}}
+\DoxyCodeLine{156 \textcolor{comment}{   * \(\backslash\)param is\_short Whether this is a short option name}}
+\DoxyCodeLine{157 \textcolor{comment}{   * \(\backslash\)throws std::invalid\_argument if the name is invalid or already exists}}
+\DoxyCodeLine{158 \textcolor{comment}{   */}}
+\DoxyCodeLine{159   \textcolor{keywordtype}{void} \mbox{\hyperlink{classArgumentParser_a56718ebc903430e9f565130adffbd036}{validate\_option\_name}}(\textcolor{keyword}{const} std::string \&name,}
+\DoxyCodeLine{160                             \textcolor{keywordtype}{bool} is\_short = \textcolor{keyword}{false}) \textcolor{keyword}{const};}
+\DoxyCodeLine{161 }
+\DoxyCodeLine{162   \textcolor{comment}{/**}}
+\DoxyCodeLine{163 \textcolor{comment}{   * \(\backslash\)brief Internal helper method to register any type of option}}
+\DoxyCodeLine{164 \textcolor{comment}{   *}}
+\DoxyCodeLine{165 \textcolor{comment}{   * \(\backslash\)tparam T The type of the option value}}
+\DoxyCodeLine{166 \textcolor{comment}{   * \(\backslash\)param name Long option name}}
+\DoxyCodeLine{167 \textcolor{comment}{   * \(\backslash\)param short\_name Short option name}}
+\DoxyCodeLine{168 \textcolor{comment}{   * \(\backslash\)param description Option description}}
+\DoxyCodeLine{169 \textcolor{comment}{   * \(\backslash\)param is\_flag Whether this option is a flag (no value)}}
+\DoxyCodeLine{170 \textcolor{comment}{   * \(\backslash\)param is\_mandatory Whether this option is required}}
+\DoxyCodeLine{171 \textcolor{comment}{   * \(\backslash\)param default\_val Default value}}
+\DoxyCodeLine{172 \textcolor{comment}{   * \(\backslash\)return Reference to this parser for method chaining}}
+\DoxyCodeLine{173 \textcolor{comment}{   */}}
+\DoxyCodeLine{174   \textcolor{keyword}{template} <\textcolor{keyword}{typename} T>}
+\DoxyCodeLine{175   \mbox{\hyperlink{classArgumentParser}{ArgumentParser}} \&\mbox{\hyperlink{classArgumentParser_a59f07e27748a062611445138ba2381b0}{register\_option}}(\textcolor{keyword}{const} std::string \&name,}
+\DoxyCodeLine{176                                   \textcolor{keyword}{const} std::string \&short\_name,}
+\DoxyCodeLine{177                                   \textcolor{keyword}{const} std::string \&description, \textcolor{keywordtype}{bool} is\_flag,}
+\DoxyCodeLine{178                                   \textcolor{keywordtype}{bool} is\_mandatory, T default\_val) \{}
+\DoxyCodeLine{179     \mbox{\hyperlink{classArgumentParser_a56718ebc903430e9f565130adffbd036}{validate\_option\_name}}\mbox{\hyperlink{classArgumentParser_a56718ebc903430e9f565130adffbd036}{(}}name\mbox{\hyperlink{classArgumentParser_a56718ebc903430e9f565130adffbd036}{)}};}
+\DoxyCodeLine{180     \textcolor{keywordflow}{if} (!short\_name.empty()) \{}
+\DoxyCodeLine{181       \mbox{\hyperlink{classArgumentParser_a56718ebc903430e9f565130adffbd036}{validate\_option\_name}}\mbox{\hyperlink{classArgumentParser_a56718ebc903430e9f565130adffbd036}{(}}short\_name\mbox{\hyperlink{classArgumentParser_a56718ebc903430e9f565130adffbd036}{,}} \textcolor{keyword}{true}\mbox{\hyperlink{classArgumentParser_a56718ebc903430e9f565130adffbd036}{)}};}
+\DoxyCodeLine{182     \}}
+\DoxyCodeLine{183 }
+\DoxyCodeLine{184     \mbox{\hyperlink{structArgumentParser_1_1Option}{Option}} opt\{name,         short\_name,  description, is\_flag,}
+\DoxyCodeLine{185                is\_mandatory, default\_val, convert<T>\};}
+\DoxyCodeLine{186     \mbox{\hyperlink{classArgumentParser_a250b4454ecd583c007746f73492c5a78}{options}}[name] = opt;}
+\DoxyCodeLine{187     \textcolor{keywordflow}{if} (!short\_name.empty()) \{}
+\DoxyCodeLine{188       \mbox{\hyperlink{classArgumentParser_a6d8041ab519a00d81e0a533cfaabe06d}{short\_to\_long}}[short\_name] = name;}
+\DoxyCodeLine{189     \}}
+\DoxyCodeLine{190     \textcolor{keywordflow}{return} *\textcolor{keyword}{this};}
+\DoxyCodeLine{191   \}}
+\DoxyCodeLine{192 }
+\DoxyCodeLine{193   \textcolor{comment}{/**}}
+\DoxyCodeLine{194 \textcolor{comment}{   * \(\backslash\)brief Process all command line arguments}}
+\DoxyCodeLine{195 \textcolor{comment}{   * \(\backslash\)param argc Argument count}}
+\DoxyCodeLine{196 \textcolor{comment}{   * \(\backslash\)param argv Argument array}}
+\DoxyCodeLine{197 \textcolor{comment}{   */}}
+\DoxyCodeLine{198   \textcolor{keywordtype}{void} \mbox{\hyperlink{classArgumentParser_a4ba1040e34f75efca3e9967536c86b2c}{process\_arguments}}(\textcolor{keywordtype}{int} argc, \textcolor{keywordtype}{char} **argv);}
+\DoxyCodeLine{199 }
+\DoxyCodeLine{200   \textcolor{comment}{/**}}
+\DoxyCodeLine{201 \textcolor{comment}{   * \(\backslash\)brief Add all remaining arguments as positional}}
+\DoxyCodeLine{202 \textcolor{comment}{   * \(\backslash\)param start\_index Starting index in argv}}
+\DoxyCodeLine{203 \textcolor{comment}{   * \(\backslash\)param argc Argument count}}
+\DoxyCodeLine{204 \textcolor{comment}{   * \(\backslash\)param argv Argument array}}
+\DoxyCodeLine{205 \textcolor{comment}{   */}}
+\DoxyCodeLine{206   \textcolor{keywordtype}{void} \mbox{\hyperlink{classArgumentParser_afea51333e49b39c6c393cc2db9179d86}{collect\_remaining\_positional}}(std::size\_t start\_index, \textcolor{keywordtype}{int} argc,}
+\DoxyCodeLine{207                                     \textcolor{keywordtype}{char} **argv);}
+\DoxyCodeLine{208 }
+\DoxyCodeLine{209   \textcolor{comment}{/**}}
+\DoxyCodeLine{210 \textcolor{comment}{   * \(\backslash\)brief Check if help was requested}}
+\DoxyCodeLine{211 \textcolor{comment}{   * \(\backslash\)return true if help option was provided}}
+\DoxyCodeLine{212 \textcolor{comment}{   */}}
+\DoxyCodeLine{213   \textcolor{keywordtype}{bool} \mbox{\hyperlink{classArgumentParser_aa08c39455119cd7d249595a14a80f252}{is\_help\_requested}}() \textcolor{keyword}{const};}
+\DoxyCodeLine{214 }
+\DoxyCodeLine{215   \textcolor{comment}{/**}}
+\DoxyCodeLine{216 \textcolor{comment}{   * \(\backslash\)brief Validate that all required options were provided}}
+\DoxyCodeLine{217 \textcolor{comment}{   * \(\backslash\)throws std::runtime\_error if any mandatory option is missing}}
+\DoxyCodeLine{218 \textcolor{comment}{   */}}
+\DoxyCodeLine{219   \textcolor{keywordtype}{void} \mbox{\hyperlink{classArgumentParser_aa3b6728aa16c779e424201e235200390}{validate\_required\_options}}() \textcolor{keyword}{const};}
+\DoxyCodeLine{220 }
+\DoxyCodeLine{221 \textcolor{keyword}{public}:}
+\DoxyCodeLine{222   \textcolor{comment}{/**}}
+\DoxyCodeLine{223 \textcolor{comment}{   * \(\backslash\)brief Construct a new Argument Parser}}
+\DoxyCodeLine{224 \textcolor{comment}{   * \(\backslash\)param description Program description text}}
+\DoxyCodeLine{225 \textcolor{comment}{   */}}
+\DoxyCodeLine{226   \textcolor{keyword}{explicit} \mbox{\hyperlink{classArgumentParser_acac692345473471c494c1ecf66e2dc2a}{ArgumentParser}}(std::string description = \textcolor{stringliteral}{"{}"{}});}
+\DoxyCodeLine{227 }
+\DoxyCodeLine{228   \textcolor{comment}{/**}}
+\DoxyCodeLine{229 \textcolor{comment}{   * \(\backslash\)brief Add an option that takes a value}}
+\DoxyCodeLine{230 \textcolor{comment}{   * \(\backslash\)tparam T Type of the option value}}
+\DoxyCodeLine{231 \textcolor{comment}{   * \(\backslash\)param name Long option name}}
+\DoxyCodeLine{232 \textcolor{comment}{   * \(\backslash\)param short\_name Short option name (single character)}}
+\DoxyCodeLine{233 \textcolor{comment}{   * \(\backslash\)param description Option description}}
+\DoxyCodeLine{234 \textcolor{comment}{   * \(\backslash\)param is\_mandatory Whether the option is required}}
+\DoxyCodeLine{235 \textcolor{comment}{   * \(\backslash\)param default\_val Default value if not provided}}
+\DoxyCodeLine{236 \textcolor{comment}{   * \(\backslash\)return Reference to this parser for method chaining}}
+\DoxyCodeLine{237 \textcolor{comment}{   */}}
+\DoxyCodeLine{238   \textcolor{keyword}{template} <\textcolor{keyword}{typename} T>}
+\DoxyCodeLine{239   \mbox{\hyperlink{classArgumentParser}{ArgumentParser}} \&\mbox{\hyperlink{classArgumentParser_afa9b987680a01e03187f658fa3d49511}{add\_option}}(\textcolor{keyword}{const} std::string \&name,}
+\DoxyCodeLine{240                              \textcolor{keyword}{const} std::string \&short\_name,}
+\DoxyCodeLine{241                              \textcolor{keyword}{const} std::string \&description, \textcolor{keywordtype}{bool} is\_mandatory,}
+\DoxyCodeLine{242                              T default\_val = T\{\}) \{}
+\DoxyCodeLine{243     \textcolor{keywordflow}{return} register\_option<T>(name, short\_name, description, \textcolor{keyword}{false},}
+\DoxyCodeLine{244                               is\_mandatory, default\_val);}
+\DoxyCodeLine{245   \}}
+\DoxyCodeLine{246 }
+\DoxyCodeLine{247   \textcolor{comment}{/**}}
+\DoxyCodeLine{248 \textcolor{comment}{   * \(\backslash\)brief Add a flag option}}
+\DoxyCodeLine{249 \textcolor{comment}{   * \(\backslash\)param name Long option name}}
+\DoxyCodeLine{250 \textcolor{comment}{   * \(\backslash\)param short\_name Short option name (single character)}}
+\DoxyCodeLine{251 \textcolor{comment}{   * \(\backslash\)param description Option description}}
+\DoxyCodeLine{252 \textcolor{comment}{   * \(\backslash\)param is\_mandatory Whether the option is required}}
+\DoxyCodeLine{253 \textcolor{comment}{   * \(\backslash\)return Reference to this parser for method chaining}}
+\DoxyCodeLine{254 \textcolor{comment}{   */}}
+\DoxyCodeLine{255   \mbox{\hyperlink{classArgumentParser}{ArgumentParser}} \&\mbox{\hyperlink{classArgumentParser_a760ba31bc3fe639e30f24516b73a8527}{add\_flag}}(\textcolor{keyword}{const} std::string \&name,}
+\DoxyCodeLine{256                            \textcolor{keyword}{const} std::string \&short\_name,}
+\DoxyCodeLine{257                            \textcolor{keyword}{const} std::string \&description, \textcolor{keywordtype}{bool} is\_mandatory);}
+\DoxyCodeLine{258 }
+\DoxyCodeLine{259   \textcolor{comment}{/**}}
+\DoxyCodeLine{260 \textcolor{comment}{   * \(\backslash\)brief Parse command line arguments}}
+\DoxyCodeLine{261 \textcolor{comment}{   * \(\backslash\)param argc Argument count}}
+\DoxyCodeLine{262 \textcolor{comment}{   * \(\backslash\)param argv Argument array}}
+\DoxyCodeLine{263 \textcolor{comment}{   * \(\backslash\)throw std::runtime\_error for parsing errors}}
+\DoxyCodeLine{264 \textcolor{comment}{   */}}
+\DoxyCodeLine{265   \textcolor{keywordtype}{void} \mbox{\hyperlink{classArgumentParser_adb31f6d40863b9d03f4defa90fc4699f}{parse}}(\textcolor{keywordtype}{int} argc, \textcolor{keywordtype}{char} **argv);}
+\DoxyCodeLine{266 }
+\DoxyCodeLine{267   \textcolor{comment}{/**}}
+\DoxyCodeLine{268 \textcolor{comment}{   * \(\backslash\)brief Get the value of an option}}
+\DoxyCodeLine{269 \textcolor{comment}{   * \(\backslash\)tparam T Type to cast the option value to}}
+\DoxyCodeLine{270 \textcolor{comment}{   * \(\backslash\)param name Option name}}
+\DoxyCodeLine{271 \textcolor{comment}{   * \(\backslash\)return The option value}}
+\DoxyCodeLine{272 \textcolor{comment}{   * \(\backslash\)throw std::runtime\_error if option doesn't exist}}
+\DoxyCodeLine{273 \textcolor{comment}{   * \(\backslash\)throw std::bad\_any\_cast if type doesn't match}}
+\DoxyCodeLine{274 \textcolor{comment}{   */}}
+\DoxyCodeLine{275   \textcolor{keyword}{template} <\textcolor{keyword}{typename} T> T \mbox{\hyperlink{classArgumentParser_a54fe98922d26f70d722d2603412da4d8}{get\_option}}(\textcolor{keyword}{const} std::string \&name) \textcolor{keyword}{const} \{}
+\DoxyCodeLine{276     \textcolor{keywordflow}{if} (!\mbox{\hyperlink{classArgumentParser_a250b4454ecd583c007746f73492c5a78}{options}}.contains(name)) \{}
+\DoxyCodeLine{277       \textcolor{keywordflow}{throw} std::runtime\_error(\textcolor{stringliteral}{"{}Option not registered: "{}} + name);}
+\DoxyCodeLine{278     \}}
+\DoxyCodeLine{279 }
+\DoxyCodeLine{280     \textcolor{keywordflow}{return} std::any\_cast<T>(\mbox{\hyperlink{classArgumentParser_a250b4454ecd583c007746f73492c5a78}{options}}.at(name)\mbox{\hyperlink{structArgumentParser_1_1Option_ab6523c03406e2f5c42619cda71197445}{.}}\mbox{\hyperlink{structArgumentParser_1_1Option_ab6523c03406e2f5c42619cda71197445}{value}});}
+\DoxyCodeLine{281   \}}
+\DoxyCodeLine{282 }
+\DoxyCodeLine{283   \textcolor{comment}{/**}}
+\DoxyCodeLine{284 \textcolor{comment}{   * \(\backslash\)brief Check if an option was provided on the command line}}
+\DoxyCodeLine{285 \textcolor{comment}{   * \(\backslash\)param name Option name}}
+\DoxyCodeLine{286 \textcolor{comment}{   * \(\backslash\)return true if the option was provided}}
+\DoxyCodeLine{287 \textcolor{comment}{   */}}
+\DoxyCodeLine{288   \textcolor{keywordtype}{bool} \mbox{\hyperlink{classArgumentParser_a25077fef114af88d031e2c4d94e3011b}{is\_provided}}(\textcolor{keyword}{const} std::string \&name) \textcolor{keyword}{const};}
+\DoxyCodeLine{289 }
+\DoxyCodeLine{290   \textcolor{comment}{/**}}
+\DoxyCodeLine{291 \textcolor{comment}{   * \(\backslash\)brief Get positional arguments}}
+\DoxyCodeLine{292 \textcolor{comment}{   * \(\backslash\)return Vector of positional arguments}}
+\DoxyCodeLine{293 \textcolor{comment}{   */}}
+\DoxyCodeLine{294   \textcolor{keyword}{const} std::vector<std::string> \&\mbox{\hyperlink{classArgumentParser_ac9d9368ef8c4facb9ac0ed55d1b4d03c}{get\_positional}}() \textcolor{keyword}{const};}
+\DoxyCodeLine{295 }
+\DoxyCodeLine{296   \textcolor{comment}{/**}}
+\DoxyCodeLine{297 \textcolor{comment}{   * \(\backslash\)brief Print help message to stdout}}
+\DoxyCodeLine{298 \textcolor{comment}{   */}}
+\DoxyCodeLine{299   \textcolor{keywordtype}{void} \mbox{\hyperlink{classArgumentParser_a659342b3d55d5d907a6d5179f7417956}{print\_help}}() \textcolor{keyword}{const};}
+\DoxyCodeLine{300 \};}
+
+\end{DoxyCode}

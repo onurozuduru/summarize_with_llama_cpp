@@ -1,0 +1,441 @@
+\hypertarget{classArgumentParser}{}\doxysubsection{Argument\+Parser Class Reference}
+\label{classArgumentParser}\index{ArgumentParser@{ArgumentParser}}
+
+
+A simple command line argument parser.  
+
+
+
+
+{\ttfamily \#include \char`\"{}argument\+\_\+parser.\+h\char`\"{}}
+
+\doxysubsubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structArgumentParser_1_1Option}{Option}}
+\begin{DoxyCompactList}\small\item\em Represents a command line option with its properties and value. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classArgumentParser}{Argument\+Parser}} \& \mbox{\hyperlink{classArgumentParser_a760ba31bc3fe639e30f24516b73a8527}{add\+\_\+flag}} (const std\+::string \&name, const std\+::string \&short\+\_\+name, const std\+::string \&description, bool is\+\_\+mandatory)
+\begin{DoxyCompactList}\small\item\em Add a flag option. \end{DoxyCompactList}\item 
+{\footnotesize template$<$typename T $>$ }\\\mbox{\hyperlink{classArgumentParser}{Argument\+Parser}} \& \mbox{\hyperlink{classArgumentParser_afa9b987680a01e03187f658fa3d49511}{add\+\_\+option}} (const std\+::string \&name, const std\+::string \&short\+\_\+name, const std\+::string \&description, bool is\+\_\+mandatory, T default\+\_\+val=T\{\})
+\begin{DoxyCompactList}\small\item\em Add an option that takes a value. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classArgumentParser_acac692345473471c494c1ecf66e2dc2a}{Argument\+Parser}} (std\+::string description=\char`\"{}\char`\"{})
+\begin{DoxyCompactList}\small\item\em Construct a new Argument Parser. \end{DoxyCompactList}\item 
+{\footnotesize template$<$typename T $>$ }\\T \mbox{\hyperlink{classArgumentParser_a54fe98922d26f70d722d2603412da4d8}{get\+\_\+option}} (const std\+::string \&name) const
+\begin{DoxyCompactList}\small\item\em Get the value of an option. \end{DoxyCompactList}\item 
+const std\+::vector$<$ std\+::string $>$ \& \mbox{\hyperlink{classArgumentParser_ac9d9368ef8c4facb9ac0ed55d1b4d03c}{get\+\_\+positional}} () const
+\begin{DoxyCompactList}\small\item\em Get positional arguments. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{classArgumentParser_a25077fef114af88d031e2c4d94e3011b}{is\+\_\+provided}} (const std\+::string \&name) const
+\begin{DoxyCompactList}\small\item\em Check if an option was provided on the command line. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classArgumentParser_adb31f6d40863b9d03f4defa90fc4699f}{parse}} (int argc, char $\ast$$\ast$argv)
+\begin{DoxyCompactList}\small\item\em Parse command line arguments. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classArgumentParser_a659342b3d55d5d907a6d5179f7417956}\label{classArgumentParser_a659342b3d55d5d907a6d5179f7417956}} 
+void {\bfseries print\+\_\+help} () const
+\begin{DoxyCompactList}\small\item\em Print help message to stdout. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Private Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{classArgumentParser_afea51333e49b39c6c393cc2db9179d86}{collect\+\_\+remaining\+\_\+positional}} (std\+::size\+\_\+t start\+\_\+index, int argc, char $\ast$$\ast$argv)
+\begin{DoxyCompactList}\small\item\em Add all remaining arguments as positional. \end{DoxyCompactList}\item 
+std\+::string \mbox{\hyperlink{classArgumentParser_af5aecf7c77abfcf6f4d82040ef656cce}{generate\+\_\+help}} () const
+\begin{DoxyCompactList}\small\item\em Generates help text for command line usage. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{classArgumentParser_aa08c39455119cd7d249595a14a80f252}{is\+\_\+help\+\_\+requested}} () const
+\begin{DoxyCompactList}\small\item\em Check if help was requested. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classArgumentParser_a4ba1040e34f75efca3e9967536c86b2c}{process\+\_\+arguments}} (int argc, char $\ast$$\ast$argv)
+\begin{DoxyCompactList}\small\item\em Process all command line arguments. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classArgumentParser_a9042b2fb305a6f5a60629190242e7047}{process\+\_\+option}} (const std\+::string \&name, int \&current\+\_\+index, int argc, char $\ast$$\ast$argv)
+\begin{DoxyCompactList}\small\item\em Process a single option from the command line. \end{DoxyCompactList}\item 
+{\footnotesize template$<$typename T $>$ }\\\mbox{\hyperlink{classArgumentParser}{Argument\+Parser}} \& \mbox{\hyperlink{classArgumentParser_a59f07e27748a062611445138ba2381b0}{register\+\_\+option}} (const std\+::string \&name, const std\+::string \&short\+\_\+name, const std\+::string \&description, bool is\+\_\+flag, bool is\+\_\+mandatory, T default\+\_\+val)
+\begin{DoxyCompactList}\small\item\em Internal helper method to register any type of option. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classArgumentParser_a56718ebc903430e9f565130adffbd036}{validate\+\_\+option\+\_\+name}} (const std\+::string \&name, bool is\+\_\+short=false) const
+\begin{DoxyCompactList}\small\item\em Validate option names and check for duplicates. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classArgumentParser_aa3b6728aa16c779e424201e235200390}{validate\+\_\+required\+\_\+options}} () const
+\begin{DoxyCompactList}\small\item\em Validate that all required options were provided. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Static Private Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+{\footnotesize template$<$typename T $>$ }\\static std\+::any \mbox{\hyperlink{classArgumentParser_aba27e4c815ae4a9daf7d23cf9c30eee3}{convert}} (const std\+::string \&val)
+\begin{DoxyCompactList}\small\item\em Converts a string argument to a typed value. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classArgumentParser_a250b4454ecd583c007746f73492c5a78}\label{classArgumentParser_a250b4454ecd583c007746f73492c5a78}} 
+std\+::unordered\+\_\+map$<$ std\+::string, \mbox{\hyperlink{structArgumentParser_1_1Option}{Option}} $>$ {\bfseries options}
+\begin{DoxyCompactList}\small\item\em Maps long option names to their corresponding \mbox{\hyperlink{structArgumentParser_1_1Option}{Option}} objects. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classArgumentParser_a010aaa71a340b77f32da77400f56239e}\label{classArgumentParser_a010aaa71a340b77f32da77400f56239e}} 
+std\+::vector$<$ std\+::string $>$ {\bfseries positional}
+\begin{DoxyCompactList}\small\item\em Stores positional command line arguments (not associated with any option) \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classArgumentParser_a83175c1d293bf4935e3a401e679971e9}\label{classArgumentParser_a83175c1d293bf4935e3a401e679971e9}} 
+std\+::string {\bfseries program\+\_\+description}
+\begin{DoxyCompactList}\small\item\em Description of the program to show in help message. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classArgumentParser_a5b869a95fdc6892bb95a7b6076a89d3e}\label{classArgumentParser_a5b869a95fdc6892bb95a7b6076a89d3e}} 
+std\+::string {\bfseries program\+\_\+name}
+\begin{DoxyCompactList}\small\item\em Name of the program (extracted from argv\mbox{[}0\mbox{]}) \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classArgumentParser_a6d8041ab519a00d81e0a533cfaabe06d}\label{classArgumentParser_a6d8041ab519a00d81e0a533cfaabe06d}} 
+std\+::unordered\+\_\+map$<$ std\+::string, std\+::string $>$ {\bfseries short\+\_\+to\+\_\+long}
+\begin{DoxyCompactList}\small\item\em Maps short option names to their corresponding long option names for quick lookup. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsubsection{Detailed Description}
+A simple command line argument parser. 
+
+\doxysubsubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classArgumentParser_acac692345473471c494c1ecf66e2dc2a}\label{classArgumentParser_acac692345473471c494c1ecf66e2dc2a}} 
+\index{ArgumentParser@{ArgumentParser}!ArgumentParser@{ArgumentParser}}
+\index{ArgumentParser@{ArgumentParser}!ArgumentParser@{ArgumentParser}}
+\doxyparagraph{\texorpdfstring{ArgumentParser()}{ArgumentParser()}}
+{\footnotesize\ttfamily Argument\+Parser\+::\+Argument\+Parser (\begin{DoxyParamCaption}\item[{std\+::string}]{description = {\ttfamily \char`\"{}\char`\"{}} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [explicit]}}
+
+
+
+Construct a new Argument Parser. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em description} & Program description text \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsubsection{Member Function Documentation}
+\mbox{\Hypertarget{classArgumentParser_a760ba31bc3fe639e30f24516b73a8527}\label{classArgumentParser_a760ba31bc3fe639e30f24516b73a8527}} 
+\index{ArgumentParser@{ArgumentParser}!add\_flag@{add\_flag}}
+\index{add\_flag@{add\_flag}!ArgumentParser@{ArgumentParser}}
+\doxyparagraph{\texorpdfstring{add\_flag()}{add\_flag()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classArgumentParser}{Argument\+Parser}} \& Argument\+Parser\+::add\+\_\+flag (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{name,  }\item[{const std\+::string \&}]{short\+\_\+name,  }\item[{const std\+::string \&}]{description,  }\item[{bool}]{is\+\_\+mandatory }\end{DoxyParamCaption})}
+
+
+
+Add a flag option. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em name} & Long option name \\
+\hline
+{\em short\+\_\+name} & Short option name (single character) \\
+\hline
+{\em description} & \mbox{\hyperlink{structArgumentParser_1_1Option}{Option}} description \\
+\hline
+{\em is\+\_\+mandatory} & Whether the option is required \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Reference to this parser for method chaining 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classArgumentParser_afa9b987680a01e03187f658fa3d49511}\label{classArgumentParser_afa9b987680a01e03187f658fa3d49511}} 
+\index{ArgumentParser@{ArgumentParser}!add\_option@{add\_option}}
+\index{add\_option@{add\_option}!ArgumentParser@{ArgumentParser}}
+\doxyparagraph{\texorpdfstring{add\_option()}{add\_option()}}
+{\footnotesize\ttfamily template$<$typename T $>$ \\
+\mbox{\hyperlink{classArgumentParser}{Argument\+Parser}} \& Argument\+Parser\+::add\+\_\+option (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{name,  }\item[{const std\+::string \&}]{short\+\_\+name,  }\item[{const std\+::string \&}]{description,  }\item[{bool}]{is\+\_\+mandatory,  }\item[{T}]{default\+\_\+val = {\ttfamily T\{\}} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Add an option that takes a value. 
+
+
+\begin{DoxyTemplParams}{Template Parameters}
+{\em T} & Type of the option value \\
+\hline
+\end{DoxyTemplParams}
+
+\begin{DoxyParams}{Parameters}
+{\em name} & Long option name \\
+\hline
+{\em short\+\_\+name} & Short option name (single character) \\
+\hline
+{\em description} & \mbox{\hyperlink{structArgumentParser_1_1Option}{Option}} description \\
+\hline
+{\em is\+\_\+mandatory} & Whether the option is required \\
+\hline
+{\em default\+\_\+val} & Default value if not provided \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Reference to this parser for method chaining 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classArgumentParser_afea51333e49b39c6c393cc2db9179d86}\label{classArgumentParser_afea51333e49b39c6c393cc2db9179d86}} 
+\index{ArgumentParser@{ArgumentParser}!collect\_remaining\_positional@{collect\_remaining\_positional}}
+\index{collect\_remaining\_positional@{collect\_remaining\_positional}!ArgumentParser@{ArgumentParser}}
+\doxyparagraph{\texorpdfstring{collect\_remaining\_positional()}{collect\_remaining\_positional()}}
+{\footnotesize\ttfamily void Argument\+Parser\+::collect\+\_\+remaining\+\_\+positional (\begin{DoxyParamCaption}\item[{std\+::size\+\_\+t}]{start\+\_\+index,  }\item[{int}]{argc,  }\item[{char $\ast$$\ast$}]{argv }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Add all remaining arguments as positional. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em start\+\_\+index} & Starting index in argv \\
+\hline
+{\em argc} & Argument count \\
+\hline
+{\em argv} & Argument array \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classArgumentParser_aba27e4c815ae4a9daf7d23cf9c30eee3}\label{classArgumentParser_aba27e4c815ae4a9daf7d23cf9c30eee3}} 
+\index{ArgumentParser@{ArgumentParser}!convert@{convert}}
+\index{convert@{convert}!ArgumentParser@{ArgumentParser}}
+\doxyparagraph{\texorpdfstring{convert()}{convert()}}
+{\footnotesize\ttfamily template$<$typename T $>$ \\
+static std\+::any Argument\+Parser\+::convert (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{val }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}, {\ttfamily [private]}}
+
+
+
+Converts a string argument to a typed value. 
+
+
+\begin{DoxyTemplParams}{Template Parameters}
+{\em T} & The target type to convert to (string, bool, int, float, double) \\
+\hline
+\end{DoxyTemplParams}
+
+\begin{DoxyParams}{Parameters}
+{\em val} & The string value to convert \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+std\+::any The converted value wrapped in std\+::any 
+\end{DoxyReturn}
+
+\begin{DoxyExceptions}{Exceptions}
+{\em std\+::runtime\+\_\+error} & If T is not one of the supported types \\
+\hline
+{\em std\+::invalid\+\_\+argument} & If the string cannot be converted to the requested type \\
+\hline
+{\em std\+::out\+\_\+of\+\_\+range} & If the converted value would be out of range for the target type \\
+\hline
+\end{DoxyExceptions}
+\mbox{\Hypertarget{classArgumentParser_af5aecf7c77abfcf6f4d82040ef656cce}\label{classArgumentParser_af5aecf7c77abfcf6f4d82040ef656cce}} 
+\index{ArgumentParser@{ArgumentParser}!generate\_help@{generate\_help}}
+\index{generate\_help@{generate\_help}!ArgumentParser@{ArgumentParser}}
+\doxyparagraph{\texorpdfstring{generate\_help()}{generate\_help()}}
+{\footnotesize\ttfamily std\+::string Argument\+Parser\+::generate\+\_\+help (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Generates help text for command line usage. 
+
+\begin{DoxyReturn}{Returns}
+Formatted help string
+\end{DoxyReturn}
+Creates a help message showing program usage, description, and available options in a readable format \mbox{\Hypertarget{classArgumentParser_a54fe98922d26f70d722d2603412da4d8}\label{classArgumentParser_a54fe98922d26f70d722d2603412da4d8}} 
+\index{ArgumentParser@{ArgumentParser}!get\_option@{get\_option}}
+\index{get\_option@{get\_option}!ArgumentParser@{ArgumentParser}}
+\doxyparagraph{\texorpdfstring{get\_option()}{get\_option()}}
+{\footnotesize\ttfamily template$<$typename T $>$ \\
+T Argument\+Parser\+::get\+\_\+option (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{name }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Get the value of an option. 
+
+
+\begin{DoxyTemplParams}{Template Parameters}
+{\em T} & Type to cast the option value to \\
+\hline
+\end{DoxyTemplParams}
+
+\begin{DoxyParams}{Parameters}
+{\em name} & \mbox{\hyperlink{structArgumentParser_1_1Option}{Option}} name \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The option value 
+\end{DoxyReturn}
+
+\begin{DoxyExceptions}{Exceptions}
+{\em std\+::runtime\+\_\+error} & if option doesn\textquotesingle{}t exist \\
+\hline
+{\em std\+::bad\+\_\+any\+\_\+cast} & if type doesn\textquotesingle{}t match \\
+\hline
+\end{DoxyExceptions}
+\mbox{\Hypertarget{classArgumentParser_ac9d9368ef8c4facb9ac0ed55d1b4d03c}\label{classArgumentParser_ac9d9368ef8c4facb9ac0ed55d1b4d03c}} 
+\index{ArgumentParser@{ArgumentParser}!get\_positional@{get\_positional}}
+\index{get\_positional@{get\_positional}!ArgumentParser@{ArgumentParser}}
+\doxyparagraph{\texorpdfstring{get\_positional()}{get\_positional()}}
+{\footnotesize\ttfamily const std\+::vector$<$ std\+::string $>$ \& Argument\+Parser\+::get\+\_\+positional (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+Get positional arguments. 
+
+\begin{DoxyReturn}{Returns}
+Vector of positional arguments 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classArgumentParser_aa08c39455119cd7d249595a14a80f252}\label{classArgumentParser_aa08c39455119cd7d249595a14a80f252}} 
+\index{ArgumentParser@{ArgumentParser}!is\_help\_requested@{is\_help\_requested}}
+\index{is\_help\_requested@{is\_help\_requested}!ArgumentParser@{ArgumentParser}}
+\doxyparagraph{\texorpdfstring{is\_help\_requested()}{is\_help\_requested()}}
+{\footnotesize\ttfamily bool Argument\+Parser\+::is\+\_\+help\+\_\+requested (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Check if help was requested. 
+
+\begin{DoxyReturn}{Returns}
+true if help option was provided 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classArgumentParser_a25077fef114af88d031e2c4d94e3011b}\label{classArgumentParser_a25077fef114af88d031e2c4d94e3011b}} 
+\index{ArgumentParser@{ArgumentParser}!is\_provided@{is\_provided}}
+\index{is\_provided@{is\_provided}!ArgumentParser@{ArgumentParser}}
+\doxyparagraph{\texorpdfstring{is\_provided()}{is\_provided()}}
+{\footnotesize\ttfamily bool Argument\+Parser\+::is\+\_\+provided (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{name }\end{DoxyParamCaption}) const}
+
+
+
+Check if an option was provided on the command line. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em name} & \mbox{\hyperlink{structArgumentParser_1_1Option}{Option}} name \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+true if the option was provided 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classArgumentParser_adb31f6d40863b9d03f4defa90fc4699f}\label{classArgumentParser_adb31f6d40863b9d03f4defa90fc4699f}} 
+\index{ArgumentParser@{ArgumentParser}!parse@{parse}}
+\index{parse@{parse}!ArgumentParser@{ArgumentParser}}
+\doxyparagraph{\texorpdfstring{parse()}{parse()}}
+{\footnotesize\ttfamily void Argument\+Parser\+::parse (\begin{DoxyParamCaption}\item[{int}]{argc,  }\item[{char $\ast$$\ast$}]{argv }\end{DoxyParamCaption})}
+
+
+
+Parse command line arguments. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em argc} & Argument count \\
+\hline
+{\em argv} & Argument array \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyExceptions}{Exceptions}
+{\em std\+::runtime\+\_\+error} & for parsing errors \\
+\hline
+\end{DoxyExceptions}
+\mbox{\Hypertarget{classArgumentParser_a4ba1040e34f75efca3e9967536c86b2c}\label{classArgumentParser_a4ba1040e34f75efca3e9967536c86b2c}} 
+\index{ArgumentParser@{ArgumentParser}!process\_arguments@{process\_arguments}}
+\index{process\_arguments@{process\_arguments}!ArgumentParser@{ArgumentParser}}
+\doxyparagraph{\texorpdfstring{process\_arguments()}{process\_arguments()}}
+{\footnotesize\ttfamily void Argument\+Parser\+::process\+\_\+arguments (\begin{DoxyParamCaption}\item[{int}]{argc,  }\item[{char $\ast$$\ast$}]{argv }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Process all command line arguments. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em argc} & Argument count \\
+\hline
+{\em argv} & Argument array \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classArgumentParser_a9042b2fb305a6f5a60629190242e7047}\label{classArgumentParser_a9042b2fb305a6f5a60629190242e7047}} 
+\index{ArgumentParser@{ArgumentParser}!process\_option@{process\_option}}
+\index{process\_option@{process\_option}!ArgumentParser@{ArgumentParser}}
+\doxyparagraph{\texorpdfstring{process\_option()}{process\_option()}}
+{\footnotesize\ttfamily void Argument\+Parser\+::process\+\_\+option (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{name,  }\item[{int \&}]{current\+\_\+index,  }\item[{int}]{argc,  }\item[{char $\ast$$\ast$}]{argv }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Process a single option from the command line. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em name} & The long name of the option being processed \\
+\hline
+{\em current\+\_\+index} & Current index in argv array, may be updated if option consumes a value \\
+\hline
+{\em argc} & Number of command line arguments \\
+\hline
+{\em argv} & Array of command line arguments\\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyExceptions}{Exceptions}
+{\em std\+::runtime\+\_\+error} & If the option is unknown or value parsing fails \\
+\hline
+{\em std\+::runtime\+\_\+error} & If a non-\/flag option is provided without a value\\
+\hline
+\end{DoxyExceptions}
+Handles both flag options (which don\textquotesingle{}t require a value) and value options (which consume the next argument as their value). For value options, the index cuurent\+\_\+index is incremented to skip the value in the main parsing loop. \mbox{\Hypertarget{classArgumentParser_a59f07e27748a062611445138ba2381b0}\label{classArgumentParser_a59f07e27748a062611445138ba2381b0}} 
+\index{ArgumentParser@{ArgumentParser}!register\_option@{register\_option}}
+\index{register\_option@{register\_option}!ArgumentParser@{ArgumentParser}}
+\doxyparagraph{\texorpdfstring{register\_option()}{register\_option()}}
+{\footnotesize\ttfamily template$<$typename T $>$ \\
+\mbox{\hyperlink{classArgumentParser}{Argument\+Parser}} \& Argument\+Parser\+::register\+\_\+option (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{name,  }\item[{const std\+::string \&}]{short\+\_\+name,  }\item[{const std\+::string \&}]{description,  }\item[{bool}]{is\+\_\+flag,  }\item[{bool}]{is\+\_\+mandatory,  }\item[{T}]{default\+\_\+val }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [private]}}
+
+
+
+Internal helper method to register any type of option. 
+
+
+\begin{DoxyTemplParams}{Template Parameters}
+{\em T} & The type of the option value \\
+\hline
+\end{DoxyTemplParams}
+
+\begin{DoxyParams}{Parameters}
+{\em name} & Long option name \\
+\hline
+{\em short\+\_\+name} & Short option name \\
+\hline
+{\em description} & \mbox{\hyperlink{structArgumentParser_1_1Option}{Option}} description \\
+\hline
+{\em is\+\_\+flag} & Whether this option is a flag (no value) \\
+\hline
+{\em is\+\_\+mandatory} & Whether this option is required \\
+\hline
+{\em default\+\_\+val} & Default value \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Reference to this parser for method chaining 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classArgumentParser_a56718ebc903430e9f565130adffbd036}\label{classArgumentParser_a56718ebc903430e9f565130adffbd036}} 
+\index{ArgumentParser@{ArgumentParser}!validate\_option\_name@{validate\_option\_name}}
+\index{validate\_option\_name@{validate\_option\_name}!ArgumentParser@{ArgumentParser}}
+\doxyparagraph{\texorpdfstring{validate\_option\_name()}{validate\_option\_name()}}
+{\footnotesize\ttfamily void Argument\+Parser\+::validate\+\_\+option\+\_\+name (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{name,  }\item[{bool}]{is\+\_\+short = {\ttfamily false} }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Validate option names and check for duplicates. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em name} & The option name to validate \\
+\hline
+{\em is\+\_\+short} & Whether this is a short option name \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyExceptions}{Exceptions}
+{\em std\+::invalid\+\_\+argument} & if the name is invalid or already exists \\
+\hline
+\end{DoxyExceptions}
+\mbox{\Hypertarget{classArgumentParser_aa3b6728aa16c779e424201e235200390}\label{classArgumentParser_aa3b6728aa16c779e424201e235200390}} 
+\index{ArgumentParser@{ArgumentParser}!validate\_required\_options@{validate\_required\_options}}
+\index{validate\_required\_options@{validate\_required\_options}!ArgumentParser@{ArgumentParser}}
+\doxyparagraph{\texorpdfstring{validate\_required\_options()}{validate\_required\_options()}}
+{\footnotesize\ttfamily void Argument\+Parser\+::validate\+\_\+required\+\_\+options (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Validate that all required options were provided. 
+
+
+\begin{DoxyExceptions}{Exceptions}
+{\em std\+::runtime\+\_\+error} & if any mandatory option is missing \\
+\hline
+\end{DoxyExceptions}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+include/argument\+\_\+parser.\+h\end{DoxyCompactItemize}

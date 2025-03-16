@@ -1,0 +1,174 @@
+\hypertarget{classmodel__wrapper_1_1Model}{}\doxysubsection{model\+\_\+wrapper\+::Model Class Reference}
+\label{classmodel__wrapper_1_1Model}\index{model\_wrapper::Model@{model\_wrapper::Model}}
+
+
+\mbox{\hyperlink{classmodel__wrapper_1_1Model}{Model}} wrapper.  
+
+
+
+
+{\ttfamily \#include \char`\"{}model.\+h\char`\"{}}
+
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{classmodel__wrapper_1_1Model_a2a4705ca07778e0e9e8e052056656c53}{generate\+\_\+response}} (const std\+::string \&prompt, std\+::ostream \&out)
+\begin{DoxyCompactList}\small\item\em Generate a responde from the prompt. \end{DoxyCompactList}\item 
+std\+::string \mbox{\hyperlink{classmodel__wrapper_1_1Model_abdc90421c561235664f0f88c04668ed4}{get\+\_\+formatted\+\_\+prompt}} (const std\+::vector$<$ llama\+\_\+chat\+\_\+message $>$ \&messages)
+\begin{DoxyCompactList}\small\item\em Apply the chat template to the messages. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classmodel__wrapper_1_1Model_a5fdf892e481f6abc35cf252a46d59f5f}{Model}} (const std\+::string\+\_\+view model\+\_\+path, const float temperature, const int32\+\_\+t number\+\_\+of\+\_\+gpu\+\_\+layers, const std\+::size\+\_\+t prediction\+\_\+length)
+\begin{DoxyCompactList}\small\item\em Construct a new \mbox{\hyperlink{classmodel__wrapper_1_1Model}{Model}} object. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Private Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+llama\+\_\+context\+\_\+ptr \mbox{\hyperlink{classmodel__wrapper_1_1Model_aa858451b44fce7c5cb613b4d2b6fd154}{create\+\_\+context}} (const std\+::size\+\_\+t number\+\_\+of\+\_\+tokens)
+\begin{DoxyCompactList}\small\item\em Create the context. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classmodel__wrapper_1_1Model_ace3515ae4db3331d91ff8fbede50429e}\label{classmodel__wrapper_1_1Model_ace3515ae4db3331d91ff8fbede50429e}} 
+void {\bfseries initialize\+\_\+sampler} ()
+\begin{DoxyCompactList}\small\item\em Initialize the sampler. \end{DoxyCompactList}\item 
+std\+::vector$<$ llama\+\_\+token $>$ \mbox{\hyperlink{classmodel__wrapper_1_1Model_a5a39a265162455ccb5f7872d50e9aeec}{tokenize\+\_\+prompt}} (const std\+::string \&prompt)
+\begin{DoxyCompactList}\small\item\em Tokenize the prompt {\ttfamily }. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classmodel__wrapper_1_1Model_ae91d83cfbd077009a1d70ef0d6da4fc6}\label{classmodel__wrapper_1_1Model_ae91d83cfbd077009a1d70ef0d6da4fc6}} 
+llama\+\_\+model\+\_\+ptr {\bfseries m\+\_\+model} \{nullptr\}
+\item 
+\mbox{\Hypertarget{classmodel__wrapper_1_1Model_a35fbf577f1d025540cbfeda3a5bfa5e3}\label{classmodel__wrapper_1_1Model_a35fbf577f1d025540cbfeda3a5bfa5e3}} 
+const std\+::size\+\_\+t {\bfseries m\+\_\+prediction\+\_\+length}
+\item 
+\mbox{\Hypertarget{classmodel__wrapper_1_1Model_aec48f0c4ac81f8eac708113bad1efb82}\label{classmodel__wrapper_1_1Model_aec48f0c4ac81f8eac708113bad1efb82}} 
+llama\+\_\+sampler\+\_\+ptr {\bfseries m\+\_\+sampler} \{nullptr\}
+\item 
+\mbox{\Hypertarget{classmodel__wrapper_1_1Model_a4583ae08468e03d807719b3088cd8a91}\label{classmodel__wrapper_1_1Model_a4583ae08468e03d807719b3088cd8a91}} 
+const float {\bfseries m\+\_\+temperature}
+\item 
+\mbox{\Hypertarget{classmodel__wrapper_1_1Model_a4c1e0416950ced1a849e136d70fe0bad}\label{classmodel__wrapper_1_1Model_a4c1e0416950ced1a849e136d70fe0bad}} 
+const llama\+\_\+vocab $\ast$ {\bfseries m\+\_\+vocab}
+\end{DoxyCompactItemize}
+
+
+\doxysubsubsection{Detailed Description}
+\mbox{\hyperlink{classmodel__wrapper_1_1Model}{Model}} wrapper. 
+
+\doxysubsubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classmodel__wrapper_1_1Model_a5fdf892e481f6abc35cf252a46d59f5f}\label{classmodel__wrapper_1_1Model_a5fdf892e481f6abc35cf252a46d59f5f}} 
+\index{model\_wrapper::Model@{model\_wrapper::Model}!Model@{Model}}
+\index{Model@{Model}!model\_wrapper::Model@{model\_wrapper::Model}}
+\doxyparagraph{\texorpdfstring{Model()}{Model()}}
+{\footnotesize\ttfamily model\+\_\+wrapper\+::\+Model\+::\+Model (\begin{DoxyParamCaption}\item[{const std\+::string\+\_\+view}]{model\+\_\+path,  }\item[{const float}]{temperature,  }\item[{const int32\+\_\+t}]{number\+\_\+of\+\_\+gpu\+\_\+layers,  }\item[{const std\+::size\+\_\+t}]{prediction\+\_\+length }\end{DoxyParamCaption})}
+
+
+
+Construct a new \mbox{\hyperlink{classmodel__wrapper_1_1Model}{Model}} object. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em model\+\_\+path} & The path to the model file in GGUF format \\
+\hline
+{\em temperature} & The temperature \\
+\hline
+{\em number\+\_\+of\+\_\+gpu\+\_\+layers} & The number of GPU layers to use \\
+\hline
+{\em prediction\+\_\+length} & The maximum number of tokens to predict \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyExceptions}{Exceptions}
+{\em std\+::runtime\+\_\+error} & if the model cannot be loaded \\
+\hline
+\end{DoxyExceptions}
+
+
+\doxysubsubsection{Member Function Documentation}
+\mbox{\Hypertarget{classmodel__wrapper_1_1Model_aa858451b44fce7c5cb613b4d2b6fd154}\label{classmodel__wrapper_1_1Model_aa858451b44fce7c5cb613b4d2b6fd154}} 
+\index{model\_wrapper::Model@{model\_wrapper::Model}!create\_context@{create\_context}}
+\index{create\_context@{create\_context}!model\_wrapper::Model@{model\_wrapper::Model}}
+\doxyparagraph{\texorpdfstring{create\_context()}{create\_context()}}
+{\footnotesize\ttfamily llama\+\_\+context\+\_\+ptr model\+\_\+wrapper\+::\+Model\+::create\+\_\+context (\begin{DoxyParamCaption}\item[{const std\+::size\+\_\+t}]{number\+\_\+of\+\_\+tokens }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Create the context. 
+
+The context size is determined as number\+\_\+of\+\_\+tokens + m\+\_\+prediction\+\_\+length. 
+\begin{DoxyParams}{Parameters}
+{\em number\+\_\+of\+\_\+tokens} & The number of tokens \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The context pointer 
+\end{DoxyReturn}
+
+\begin{DoxyExceptions}{Exceptions}
+{\em std\+::runtime\+\_\+error} & if the context cannot be created \\
+\hline
+\end{DoxyExceptions}
+\mbox{\Hypertarget{classmodel__wrapper_1_1Model_a2a4705ca07778e0e9e8e052056656c53}\label{classmodel__wrapper_1_1Model_a2a4705ca07778e0e9e8e052056656c53}} 
+\index{model\_wrapper::Model@{model\_wrapper::Model}!generate\_response@{generate\_response}}
+\index{generate\_response@{generate\_response}!model\_wrapper::Model@{model\_wrapper::Model}}
+\doxyparagraph{\texorpdfstring{generate\_response()}{generate\_response()}}
+{\footnotesize\ttfamily void model\+\_\+wrapper\+::\+Model\+::generate\+\_\+response (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{prompt,  }\item[{std\+::ostream \&}]{out }\end{DoxyParamCaption})}
+
+
+
+Generate a responde from the prompt. 
+
+The model generates a response to the prompt by sampling tokens and this function writes to out each token 
+\begin{DoxyParams}{Parameters}
+{\em prompt} & The prompt to respond to \\
+\hline
+{\em out} & The output stream to write the response to \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyExceptions}{Exceptions}
+{\em std\+::runtime\+\_\+error} & if the generation fails \\
+\hline
+\end{DoxyExceptions}
+\mbox{\Hypertarget{classmodel__wrapper_1_1Model_abdc90421c561235664f0f88c04668ed4}\label{classmodel__wrapper_1_1Model_abdc90421c561235664f0f88c04668ed4}} 
+\index{model\_wrapper::Model@{model\_wrapper::Model}!get\_formatted\_prompt@{get\_formatted\_prompt}}
+\index{get\_formatted\_prompt@{get\_formatted\_prompt}!model\_wrapper::Model@{model\_wrapper::Model}}
+\doxyparagraph{\texorpdfstring{get\_formatted\_prompt()}{get\_formatted\_prompt()}}
+{\footnotesize\ttfamily std\+::string model\+\_\+wrapper\+::\+Model\+::get\+\_\+formatted\+\_\+prompt (\begin{DoxyParamCaption}\item[{const std\+::vector$<$ llama\+\_\+chat\+\_\+message $>$ \&}]{messages }\end{DoxyParamCaption})}
+
+
+
+Apply the chat template to the messages. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em messages} & The messages to format \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The formatted prompt 
+\end{DoxyReturn}
+
+\begin{DoxyExceptions}{Exceptions}
+{\em std\+::runtime\+\_\+error} & if the chat template cannot be applied \\
+\hline
+\end{DoxyExceptions}
+\mbox{\Hypertarget{classmodel__wrapper_1_1Model_a5a39a265162455ccb5f7872d50e9aeec}\label{classmodel__wrapper_1_1Model_a5a39a265162455ccb5f7872d50e9aeec}} 
+\index{model\_wrapper::Model@{model\_wrapper::Model}!tokenize\_prompt@{tokenize\_prompt}}
+\index{tokenize\_prompt@{tokenize\_prompt}!model\_wrapper::Model@{model\_wrapper::Model}}
+\doxyparagraph{\texorpdfstring{tokenize\_prompt()}{tokenize\_prompt()}}
+{\footnotesize\ttfamily std\+::vector$<$ llama\+\_\+token $>$ model\+\_\+wrapper\+::\+Model\+::tokenize\+\_\+prompt (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{prompt }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Tokenize the prompt {\ttfamily }. 
+
+\begin{DoxyReturn}{Returns}
+The tokens 
+\end{DoxyReturn}
+
+\begin{DoxyExceptions}{Exceptions}
+{\em std\+::runtime\+\_\+error} & if the prompt cannot be tokenized \\
+\hline
+\end{DoxyExceptions}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+include/model.\+h\end{DoxyCompactItemize}

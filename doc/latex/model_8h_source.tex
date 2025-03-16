@@ -1,0 +1,91 @@
+\hypertarget{model_8h_source}{}\doxysubsection{model.\+h}
+\label{model_8h_source}\index{include/model.h@{include/model.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{1 \textcolor{comment}{///////////////////////////////////////////////////////////////////////////////}}
+\DoxyCodeLine{2 \textcolor{comment}{// File: model.h}}
+\DoxyCodeLine{3 \textcolor{comment}{//}}
+\DoxyCodeLine{4 \textcolor{comment}{// License: MIT}}
+\DoxyCodeLine{5 \textcolor{comment}{//}}
+\DoxyCodeLine{6 \textcolor{comment}{// Copyright (C) 2025 Onur Ozuduru}}
+\DoxyCodeLine{7 \textcolor{comment}{//}}
+\DoxyCodeLine{8 \textcolor{comment}{// Follow Me!}}
+\DoxyCodeLine{9 \textcolor{comment}{//   github: github.com/onurozuduru}}
+\DoxyCodeLine{10 \textcolor{comment}{///////////////////////////////////////////////////////////////////////////////}}
+\DoxyCodeLine{11 }
+\DoxyCodeLine{12 \textcolor{preprocessor}{\#}\textcolor{preprocessor}{include} \textcolor{preprocessor}{"{}llama-\/cpp.h"{}}}
+\DoxyCodeLine{13 \textcolor{preprocessor}{\#}\textcolor{preprocessor}{include} \textcolor{preprocessor}{<}\textcolor{preprocessor}{ostream}\textcolor{preprocessor}{>}}
+\DoxyCodeLine{14 \textcolor{preprocessor}{\#}\textcolor{preprocessor}{include} \textcolor{preprocessor}{<}\textcolor{preprocessor}{string}\textcolor{preprocessor}{>}}
+\DoxyCodeLine{15 \textcolor{preprocessor}{\#}\textcolor{preprocessor}{include} \textcolor{preprocessor}{<}\textcolor{preprocessor}{vector}\textcolor{preprocessor}{>}}
+\DoxyCodeLine{16 }
+\DoxyCodeLine{17 \textcolor{keyword}{namespace} model\_wrapper \{}
+\DoxyCodeLine{18 \textcolor{comment}{/**}}
+\DoxyCodeLine{19 \textcolor{comment}{ * \(\backslash\)brief Model wrapper}}
+\DoxyCodeLine{20 \textcolor{comment}{ */}}
+\DoxyCodeLine{21 \textcolor{keyword}{class} \mbox{\hyperlink{classmodel__wrapper_1_1Model}{Model}} \{}
+\DoxyCodeLine{22 \textcolor{keyword}{private}:}
+\DoxyCodeLine{23   \textcolor{keyword}{const} \textcolor{keywordtype}{float} m\_temperature;}
+\DoxyCodeLine{24   \textcolor{keyword}{const} std::size\_t m\_prediction\_length;}
+\DoxyCodeLine{25 }
+\DoxyCodeLine{26   llama\_model\_ptr m\_model\{\textcolor{keywordtype}{nullptr}\};}
+\DoxyCodeLine{27   \textcolor{keyword}{const} llama\_vocab *m\_vocab;}
+\DoxyCodeLine{28   llama\_sampler\_ptr m\_sampler\{\textcolor{keywordtype}{nullptr}\};}
+\DoxyCodeLine{29 }
+\DoxyCodeLine{30   \textcolor{comment}{/**}}
+\DoxyCodeLine{31 \textcolor{comment}{   * \(\backslash\)brief Tokenize the prompt}}
+\DoxyCodeLine{32 \textcolor{comment}{   * \(\backslash\)p}}
+\DoxyCodeLine{33 \textcolor{comment}{   * \(\backslash\)return The tokens}}
+\DoxyCodeLine{34 \textcolor{comment}{   * \(\backslash\)throw std::runtime\_error if the prompt cannot be tokenized}}
+\DoxyCodeLine{35 \textcolor{comment}{   */}}
+\DoxyCodeLine{36   \mbox{\hyperlink{classmodel__wrapper_1_1Model_a5a39a265162455ccb5f7872d50e9aeec}{std}}::\mbox{\hyperlink{classmodel__wrapper_1_1Model_a5a39a265162455ccb5f7872d50e9aeec}{vector}}<\mbox{\hyperlink{classmodel__wrapper_1_1Model_a5a39a265162455ccb5f7872d50e9aeec}{llama\_token}}> \mbox{\hyperlink{classmodel__wrapper_1_1Model_a5a39a265162455ccb5f7872d50e9aeec}{tokenize\_prompt}}(\textcolor{keyword}{const} \mbox{\hyperlink{classmodel__wrapper_1_1Model_a5a39a265162455ccb5f7872d50e9aeec}{std}}::\mbox{\hyperlink{classmodel__wrapper_1_1Model_a5a39a265162455ccb5f7872d50e9aeec}{string}} \&\mbox{\hyperlink{classmodel__wrapper_1_1Model_a5a39a265162455ccb5f7872d50e9aeec}{prompt}});}
+\DoxyCodeLine{37 }
+\DoxyCodeLine{38   \textcolor{comment}{/**}}
+\DoxyCodeLine{39 \textcolor{comment}{   * \(\backslash\)brief Initialize the sampler}}
+\DoxyCodeLine{40 \textcolor{comment}{   */}}
+\DoxyCodeLine{41   \textcolor{keywordtype}{void} \mbox{\hyperlink{classmodel__wrapper_1_1Model_ace3515ae4db3331d91ff8fbede50429e}{initialize\_sampler}}();}
+\DoxyCodeLine{42 }
+\DoxyCodeLine{43   \textcolor{comment}{/**}}
+\DoxyCodeLine{44 \textcolor{comment}{   * \(\backslash\)brief Create the context.}}
+\DoxyCodeLine{45 \textcolor{comment}{   * \(\backslash\)details The context size is determined as}}
+\DoxyCodeLine{46 \textcolor{comment}{   * number\_of\_tokens + m\_prediction\_length.}}
+\DoxyCodeLine{47 \textcolor{comment}{   * \(\backslash\)param number\_of\_tokens The number of tokens}}
+\DoxyCodeLine{48 \textcolor{comment}{   * \(\backslash\)return The context pointer}}
+\DoxyCodeLine{49 \textcolor{comment}{   * \(\backslash\)throw std::runtime\_error if the context cannot be created}}
+\DoxyCodeLine{50 \textcolor{comment}{   */}}
+\DoxyCodeLine{51   \mbox{\hyperlink{classmodel__wrapper_1_1Model_aa858451b44fce7c5cb613b4d2b6fd154}{llama\_context\_ptr}} \mbox{\hyperlink{classmodel__wrapper_1_1Model_aa858451b44fce7c5cb613b4d2b6fd154}{create\_context}}(\textcolor{keyword}{const} \mbox{\hyperlink{classmodel__wrapper_1_1Model_aa858451b44fce7c5cb613b4d2b6fd154}{std}}::\mbox{\hyperlink{classmodel__wrapper_1_1Model_aa858451b44fce7c5cb613b4d2b6fd154}{size\_t}} \mbox{\hyperlink{classmodel__wrapper_1_1Model_aa858451b44fce7c5cb613b4d2b6fd154}{number\_of\_tokens}});}
+\DoxyCodeLine{52 }
+\DoxyCodeLine{53 \textcolor{keyword}{public}:}
+\DoxyCodeLine{54   \textcolor{comment}{/**}}
+\DoxyCodeLine{55 \textcolor{comment}{   * \(\backslash\)brief Construct a new Model object}}
+\DoxyCodeLine{56 \textcolor{comment}{   * \(\backslash\)param model\_path The path to the model file in GGUF format}}
+\DoxyCodeLine{57 \textcolor{comment}{   * \(\backslash\)param temperature The temperature}}
+\DoxyCodeLine{58 \textcolor{comment}{   * \(\backslash\)param number\_of\_gpu\_layers The number of GPU layers to use}}
+\DoxyCodeLine{59 \textcolor{comment}{   * \(\backslash\)param prediction\_length The maximum number of tokens to predict}}
+\DoxyCodeLine{60 \textcolor{comment}{   * \(\backslash\)throw std::runtime\_error if the model cannot be loaded}}
+\DoxyCodeLine{61 \textcolor{comment}{   */}}
+\DoxyCodeLine{62   \mbox{\hyperlink{classmodel__wrapper_1_1Model_a5fdf892e481f6abc35cf252a46d59f5f}{Model}}(\textcolor{keyword}{const} std::string\_view model\_path, \textcolor{keyword}{const} \textcolor{keywordtype}{float} temperature,}
+\DoxyCodeLine{63         \textcolor{keyword}{const} int32\_t number\_of\_gpu\_layers,}
+\DoxyCodeLine{64         \textcolor{keyword}{const} std::size\_t prediction\_length);}
+\DoxyCodeLine{65 }
+\DoxyCodeLine{66   \textcolor{comment}{/**}}
+\DoxyCodeLine{67 \textcolor{comment}{   * \(\backslash\)brief Apply the chat template to the messages}}
+\DoxyCodeLine{68 \textcolor{comment}{   * \(\backslash\)param messages The messages to format}}
+\DoxyCodeLine{69 \textcolor{comment}{   * \(\backslash\)return The formatted prompt}}
+\DoxyCodeLine{70 \textcolor{comment}{   * \(\backslash\)throw std::runtime\_error if the chat template cannot be applied}}
+\DoxyCodeLine{71 \textcolor{comment}{   */}}
+\DoxyCodeLine{72   std::string}
+\DoxyCodeLine{73   \mbox{\hyperlink{classmodel__wrapper_1_1Model_abdc90421c561235664f0f88c04668ed4}{get\_formatted\_prompt}}(\textcolor{keyword}{const} std::vector<llama\_chat\_message> \&messages);}
+\DoxyCodeLine{74 }
+\DoxyCodeLine{75   \textcolor{comment}{/**}}
+\DoxyCodeLine{76 \textcolor{comment}{   * \(\backslash\)brief Generate a responde from the prompt}}
+\DoxyCodeLine{77 \textcolor{comment}{   * \(\backslash\)details The model generates a response to the prompt by sampling tokens}}
+\DoxyCodeLine{78 \textcolor{comment}{   * and this function writes to out each token}}
+\DoxyCodeLine{79 \textcolor{comment}{   * \(\backslash\)param prompt The prompt to respond to}}
+\DoxyCodeLine{80 \textcolor{comment}{   * \(\backslash\)param out The output stream to write the response to}}
+\DoxyCodeLine{81 \textcolor{comment}{   * \(\backslash\)throw std::runtime\_error if the generation fails}}
+\DoxyCodeLine{82 \textcolor{comment}{   */}}
+\DoxyCodeLine{83   \textcolor{keywordtype}{void} \mbox{\hyperlink{classmodel__wrapper_1_1Model_a2a4705ca07778e0e9e8e052056656c53}{generate\_response}}(\textcolor{keyword}{const} std::string \&prompt, std::ostream \&out);}
+\DoxyCodeLine{84 \};}
+\DoxyCodeLine{85 \} \textcolor{comment}{// namespace model\_wrapper}}
+
+\end{DoxyCode}
