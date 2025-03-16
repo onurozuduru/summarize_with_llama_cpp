@@ -6,6 +6,23 @@ I took text summarization as an example to demonstrate the usage of the library 
 It is a simple command-line tool that reads text from stdin and summarizes it using a LLM.
 For testing purposes, it downloads a tiny model [SmolLM2-1.7B](https://huggingface.co/HuggingFaceTB/SmolLM2-1.7B) if no `MODEL_URL` is provided to CMake.
 
+## Demo
+
+Running with GPU and SmolLM2-1.7B
+---
+
+![run_with_gpu](https://github.com/user-attachments/assets/c55e7d2b-cde8-4133-be48-820ebfebcaca)
+
+Running with CPU by providing SmolLM2 135M version, low performance with less accuracy:
+---
+
+![run_with_cpu](https://github.com/user-attachments/assets/a0c3c073-4e8b-417f-b4da-614ae834cf99)
+
+Building:
+---
+
+![build](https://github.com/user-attachments/assets/eec20e82-d1f7-4963-9dc5-f62321bee589)
+
 ## Dependencies
 
 It fetches the `llama.cpp` and uses it as a static library.
@@ -46,8 +63,14 @@ First, it parses the command-line arguments and reads the input text.
 Then, it initializes the model and generates a response using the model.
 
 I wanted to separate the argument parsing and model generation logic.
-So I created a separate *Argument Parser* and a thin *Model Wrapper*.
+So I created a separate [*Argument Parser*](include/argument_parser.h) and a thin [*Model Wrapper*](include/model.h).
 Both can be used in other projects, hopefully, portable enough.
+
+### Documentation
+
+More details about those classes can be found in documentation:
+* [PDF](doc/latex/refman.pdf) (Readable in GitHub)
+* [HTML](doc/html/index.html)
 
 ### Main Logic
 
