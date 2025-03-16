@@ -134,7 +134,7 @@ if ! cmake --build build/ -j $JOBS; then
 fi
 
 # Generate documentation if requested
-if $GENERATE_DOCS; then
+if [ -n "$GENERATE_DOCS" ]; then
 	check_command doxygen
 	echo "Generating documentation..."
 	doxygen Doxyfile || echo "Documentation generation failed"
