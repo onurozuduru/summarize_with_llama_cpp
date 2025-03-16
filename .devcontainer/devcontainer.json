@@ -1,0 +1,15 @@
+{
+  "name": "C++ Dev Container",
+  "build": {
+    "dockerfile": "Dockerfile"
+  },
+  "appPort": ["127.0.0.1:8080:8080"],
+  "runArgs": ["--name", "cppcontainer_gpu", "--hostname", "cppcontainer_gpu", "--userns=keep-id", "--device", "nvidia.com/gpu=all"],
+  "containerEnv": {
+    "TERM": "${localEnv:TERM}",
+    "LANG": "${localEnv:LANG}",
+    "LC_ALL": "${localEnv:LC_ALL}"
+  },
+  "workspaceMount": "source=${localWorkspaceFolder},target=/home/user/workspace,type=bind",
+  "remoteUser": "user"
+}
